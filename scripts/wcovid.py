@@ -1,24 +1,31 @@
 import pandas as pd                                         #needed for dataframe
 import matplotlib.pyplot as plt                             #needed for plot
 
-covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])              #read country aggregated csv
-nz_df = (covid_df.loc[covid_df['Country'] == "New Zealand"])
-nz_df = (nz_df.loc[covid_df['Confirmed'] > 0 ])             #filter dates with no COVID
-
-reference_df = pd.read_csv('../data/reference.csv')
+reference_df = pd.read_csv('../data/reference.csv')         #load reference data
 #print(reference_df)
-nz_ref_df = (reference_df.loc[reference_df['Country_Region'] == "Netherlands"])
-#print(nz_ref_df['Population'].values)
-nz_df['Peeps'] = 4000000 #  (nz_ref_df['Population'].values)
+covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])    #read country aggregated csv
+#print(covid_df)
 
-print(nz_ref_df)
-#print(nz_df)
-print(nz_ref_df['Population'].values[0])
+country1 = input("What country are we looking for: ")
+while not (covid_df['Country']==country1).any():
+    country1 = input("Try again, what countrya re we looking for: ")
 
+c1_df = (covid_df.loc[covid_df['Country'] == country1])     #pick data for country1
+c1_df = (c1_df.loc[covid_df['Confirmed'] > 0 ])             #filter dates with no COVID
+
+c1_ref_df = (reference_df.loc[reference_df['Country_Region'] == country1])
+c1_df['Population'] = (c1_ref_df['Population'].values[0])
+
+
+#print some stuff about country1
 print('+-' * 30)
-print("Earliest infection NZ : ", nz_df['Date'].min())
-print("Latest data: ", nz_df['Date'].max())
-print(nz_ref_df['Population'].values)
+print(f"Some reference data for {country1}", c1_ref_df['Population'].values)
+print(f"Earliest infection in {country1}: ", c1_df['Date'].min())
+print(f"Latest data for {country1}: ", c1_df['Date'].max())
+
+print(c1_ref_df)
+print(c1_ref_df['Population'].values[0])
+print(c1_df)
 
 country = input("Compare with what country: ")
 while not (covid_df['Country']==country).any():
