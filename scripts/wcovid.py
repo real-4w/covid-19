@@ -7,7 +7,7 @@ def print_data(country, country_df, country_ref_df):
     print(f"Earliest infection in {country}: ", country_df['Date'].min())
     print(f"Latest data for {country}: ", country_df['Date'].max())
     print(f"Total population for {country}", country_ref_df['Population'].sum())
-    print(f"Detailed reference data for {country}")
+    print(f"Detailed reference data for {country}:")
     print(country_ref_df)
     print(country_df)
 
@@ -37,12 +37,14 @@ c2_ref_df = (reference_df.loc[reference_df['Country_Region'] == country2])
 c2_df['Population'] = (c2_ref_df['Population'].values[0])
 #not 100% done for COunhtries with multiple entries
 
-print('+-' * 30)
-print(f"Some reference data for {country2}", c2_ref_df['Population'].values)
-print(f"Earliest infection in {country2}", c2_df['Date'].min())
-print(f"Latest data for {country2}: ", c2_df['Date'].max())
-print(c2_df)
-print('+-' * 30)
+print_data(country2, c2_df, c2_ref_df)
+
+#print('+-' * 30)
+#print(f"Some reference data for {country2}", c2_ref_df['Population'].values)
+#print(f"Earliest infection in {country2}", c2_df['Date'].min())
+#print(f"Latest data for {country2}: ", c2_df['Date'].max())
+#print(c2_df)
+#print('+-' * 30)
 
 fig, axes = plt.subplots(nrows=2, ncols=2)
 c1_df.plot(ax=axes[0,0], x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
