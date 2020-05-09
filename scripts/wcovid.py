@@ -10,6 +10,13 @@ print("Earliest infection NZ : ", nz_df['Date'].min())
 print("Latest data: ", nz_df['Date'].max())
 print(nz_df)
 country = input("Compare with what country: ")
+#found = (covid_df['Country']==country).any()
+
+while not (covid_df['Country']==country).any():
+    country = input("Compare with what country: ")
+    #found = (covid_df['Country']==country).any()
+
+
 #Needs a check to see if country exits
 other_df = (covid_df.loc[covid_df['Country'] == country])
 other_df = (other_df.loc[covid_df['Confirmed'] > 0 ])
