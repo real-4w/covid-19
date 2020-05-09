@@ -1,6 +1,5 @@
 import pandas as pd                                         #needed for dataframe
 import matplotlib.pyplot as plt                             #needed for plot
-import numpy
 
 covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])              #read country aggregated csv
 nz_df = (covid_df.loc[covid_df['Country'] == "New Zealand"])
