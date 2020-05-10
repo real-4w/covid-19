@@ -1,7 +1,6 @@
 import pandas as pd                                         #needed for dataframe
 import matplotlib.pyplot as plt                             #needed for plot
 
-
 def print_data(country, country_df, country_ref_df):
     print('+-' * 30)
     print(f"Earliest infection in {country}: ", country_df['Date'].min())
