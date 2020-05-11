@@ -13,9 +13,11 @@ def print_data(country, country_df, country_ref_df):
 def calc_data (country_df, country_ref_df):
     print('+-' * 30)
     print('Calculating more data')
-    country_df['Per 1'] = round(country_df['Deaths'] / country_df['Confirmed'] * 100, 4)
+    country_df['P_dc'] = round(country_df['Deaths'] / country_df['Confirmed'] * 100, 4)      #% corona % deaths
+    country_df['P_cp'] = round(country_df['Confirmed'] / country_df['Population'] * 100, 4)  #% corona % of polulation
+    country_df['P_dp'] = round(country_df['Deaths'] / country_df['Population'] * 100, 4)     #% corona % of polulation
     print (country_df)
-
+    return country_df
 
 def print_death(country_df):
     d_name = country_df['Country'].values[0]
@@ -29,7 +31,6 @@ def print_death(country_df):
     print(f"Total death {d_name} {d_max} out of {d_patients} COVID-19 patients ({d_per1}%).")
     print(f"Percentage of the of the polulation of {d_pop} with COVID {d_per3}%.")
     print(f"Percentage of the entire population that died because of COVID {d_per2}%.")
-
 
 reference_df = pd.read_csv('../data/reference.csv')         #load reference data
 covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])    #read country aggregated csv
@@ -56,9 +57,8 @@ c2_df['Population'] = (c2_ref_df['Population'].values[0])
 
 print_data(country2, c2_df, c2_ref_df)
 
-calc_data(c1_df, c1_ref_df)
-print ("post calc")
-print (c1_df)
+c1_df = calc_data(c1_df, c1_ref_df)
+c2_df = calc_data(c2_df, c2_ref_df)
 
 print_death(c1_df)
 print_death(c2_df)
