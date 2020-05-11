@@ -20,8 +20,8 @@ def analyse_death(country_df):
     d_per3 = round(d_patients / d_pop * 100, 4)
     print('+-' * 30)
     print(f"Total death {d_name} {d_max} out of {d_patients} COVID-19 patients ({d_per1}%).")
-    print(f"Percentage of COVID {d_per3}% of the polulation of {d_pop}.")
-    print(f"Percentage COVID deaths of the entire population {d_per2}%.")
+    print(f"Percentage of the of the polulation of {d_pop} with COVID {d_per3}%.")
+    print(f"Percentage of the entire population that died because of COVID {d_per2}%.")
 
 reference_df = pd.read_csv('../data/reference.csv')         #load reference data
 covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])    #read country aggregated csv
