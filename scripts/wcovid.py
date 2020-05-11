@@ -51,10 +51,10 @@ analyse_death(c1_df)
 analyse_death(c2_df)
 
 fig, axes = plt.subplots(nrows=2, ncols=2)
-c1_df.plot(ax=axes[0,0], x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
-c1_df.plot(ax=axes[0,1], x='Date', y=['Deaths'])
+c1_df.plot(ax=axes[0,0], title=country1, x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
+c1_df.plot(ax=axes[0,1], title=country1, x='Date', y=['Deaths'])
 
-c2_df.plot(ax=axes[1,0],x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
-c2_df.plot(ax=axes[1,1],x='Date', y=['Deaths'])
+c2_df.plot(ax=axes[1,0],title=country2, x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
+c2_df.plot(ax=axes[1,1],title=country2, x='Date', y=['Deaths'])
 
 plt.show()
