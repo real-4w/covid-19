@@ -1,6 +1,6 @@
 import pandas as pd                                         #needed for dataframe
 import matplotlib.pyplot as plt                             #needed for plot
-import printcovid as pc                                     #separating processing and printing functions
+import printcovid as pc                                     # WvdS: separating processing and printing functions
 
 def calc_data (country_df, country_ref_df):
     country_df['P_cp'] = round(country_df['Confirmed'] / country_df['Population'] * 100, 4)  #% corona % of polulation
@@ -48,6 +48,7 @@ c2_df.plot(ax=axes[1,1],title=country2, x='Date', y=['Deaths'])
 fig2, axes2 = plt.subplots(nrows=2, ncols=2)
 c1_df.plot(ax=axes2[0,0], title=country1, x='Date', y=['P_cp', 'P_dp'])
 c2_df.plot(ax=axes2[1,0], title=country2, x='Date', y=['P_cp', 'P_dp'])
+
 c1_df.plot(ax=axes2[0,1], title=country1, x='Date', y=['P_dc'])
 c2_df.plot(ax=axes2[1,1], title=country2, x='Date', y=['P_dc'])
 
