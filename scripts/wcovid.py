@@ -1,14 +1,6 @@
 import pandas as pd                                         #needed for dataframe
 import matplotlib.pyplot as plt                             #needed for plot
-
-def print_data(country, country_df, country_ref_df):
-    print('+-' * 30)
-    print(f"Earliest infection in {country}: ", country_df['Date'].min())
-    print(f"Latest data for {country}: ", country_df['Date'].max())
-    print(f"Total population for {country}", country_ref_df['Population'].sum())
-    print(f"Detailed reference data for {country}:")
-    print(country_ref_df)
-    #print(country_df)
+import printcovid as pc                                     #separating processing and printing functions
 
 def calc_data (country_df, country_ref_df):
     country_df['P_cp'] = round(country_df['Confirmed'] / country_df['Population'] * 100, 4)  #% corona % of polulation
@@ -17,38 +9,34 @@ def calc_data (country_df, country_ref_df):
     #print (country_df)
     return country_df
 
-def print_death(country_df):
-    print('+-' * 30)
-    print(country_df[['Country', 'Deaths', 'P_cp', 'P_dc', 'P_dp']])
-
-reference_df = pd.read_csv('../data/reference.csv')         #load reference data
-covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])    #read country aggregated csv
+reference_df = pd.read_csv('../data/reference.csv')                                 #read reference data
+covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])     #read country aggregated csv
 
 country1 = input("What country are we looking for: ")
 while not (covid_df['Country']==country1).any():
     country1 = input("Try again: what country are we looking for: ")
 
-c1_df = (covid_df.loc[covid_df['Country'] == country1])     #pick data for country1
-c1_df = (c1_df.loc[covid_df['Confirmed'] > 0 ])             #filter dates with no COVID
+c1_df = (covid_df.loc[covid_df['Country'] == country1])                         #pick data for country1
+c1_df = (c1_df.loc[covid_df['Confirmed'] > 0 ])                                 #filter dates with no COVID
 c1_ref_df = (reference_df.loc[reference_df['Country_Region'] == country1])
-c1_df['Population'] = (c1_ref_df['Population'].values[0])   #first line in file has total, no need for sum())
-print_data(country1, c1_df, c1_ref_df)
+c1_df['Population'] = (c1_ref_df['Population'].values[0])                       #first line in file has total, no need for sum())
+pc.print_data(country1, c1_df, c1_ref_df)
 
 country2 = input("Compare with what country: ")
 while not (covid_df['Country']==country2).any():
     country2 = input("Try, again: compare with what country: ")
 
-c2_df = (covid_df.loc[covid_df['Country'] == country2])     #pick data for country2
-c2_df = (c2_df.loc[covid_df['Confirmed'] > 0 ])             #filter dates with no COVID
+c2_df = (covid_df.loc[covid_df['Country'] == country2])                         #pick data for country2
+c2_df = (c2_df.loc[covid_df['Confirmed'] > 0 ])                                 #filter dates with no COVID
 c2_ref_df = (reference_df.loc[reference_df['Country_Region'] == country2])
 c2_df['Population'] = (c2_ref_df['Population'].values[0])
-print_data(country2, c2_df, c2_ref_df)
+pc.print_data(country2, c2_df, c2_ref_df)
 
 c1_df = calc_data(c1_df, c1_ref_df)
 c2_df = calc_data(c2_df, c2_ref_df)
 
-print_death(c1_df)
-print_death(c2_df)
+pc.print_death(c1_df)
+pc.print_death(c2_df)
 
 fig, axes = plt.subplots(nrows=2, ncols=2)
 c1_df.plot(ax=axes[0,0], title=country1, x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
@@ -58,6 +46,9 @@ c2_df.plot(ax=axes[1,0],title=country2, x='Date', y=['Confirmed', 'Recovered', '
 c2_df.plot(ax=axes[1,1],title=country2, x='Date', y=['Deaths'])
 
 fig2, axes2 = plt.subplots(nrows=2, ncols=2)
-c1_df.plot(ax=axes2[0,0], title=country1, x='Date', y=['P_cp', 'P_dc', 'P_dp'])
-c2_df.plot(ax=axes2[1,0], title=country2, x='Date', y=['P_cp', 'P_dc', 'P_dp'])
+c1_df.plot(ax=axes2[0,0], title=country1, x='Date', y=['P_cp', 'P_dp'])
+c2_df.plot(ax=axes2[1,0], title=country2, x='Date', y=['P_cp', 'P_dp'])
+c1_df.plot(ax=axes2[0,1], title=country1, x='Date', y=['P_dc'])
+c2_df.plot(ax=axes2[1,1], title=country2, x='Date', y=['P_dc'])
+
 plt.show()
