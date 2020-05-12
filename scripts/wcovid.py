@@ -8,29 +8,18 @@ def print_data(country, country_df, country_ref_df):
     print(f"Total population for {country}", country_ref_df['Population'].sum())
     print(f"Detailed reference data for {country}:")
     print(country_ref_df)
-    print(country_df)
+    #print(country_df)
 
 def calc_data (country_df, country_ref_df):
-    print('+-' * 30)
-    print('Calculating more data')
-    country_df['P_dc'] = round(country_df['Deaths'] / country_df['Confirmed'] * 100, 4)      #% corona % deaths
     country_df['P_cp'] = round(country_df['Confirmed'] / country_df['Population'] * 100, 4)  #% corona % of polulation
+    country_df['P_dc'] = round(country_df['Deaths'] / country_df['Confirmed'] * 100, 4)      #% corona % deaths
     country_df['P_dp'] = round(country_df['Deaths'] / country_df['Population'] * 100, 4)     #% corona % of polulation
-    print (country_df)
+    #print (country_df)
     return country_df
 
 def print_death(country_df):
-    d_name = country_df['Country'].values[0]
-    d_max = country_df['Deaths'].max()
-    d_patients = country_df['Confirmed'].max()            #should really be last value
-    d_per1 = round(d_max / d_patients * 100, 4)
-    d_pop = int(country_df['Population'].max())
-    d_per2 = round(d_max / d_pop * 100, 4)
-    d_per3 = round(d_patients / d_pop * 100, 4)
     print('+-' * 30)
-    print(f"Total death {d_name} {d_max} out of {d_patients} COVID-19 patients ({d_per1}%).")
-    print(f"Percentage of the of the polulation of {d_pop} with COVID {d_per3}%.")
-    print(f"Percentage of the entire population that died because of COVID {d_per2}%.")
+    print(country_df[['Country', 'Deaths', 'P_cp', 'P_dc', 'P_dp']])
 
 reference_df = pd.read_csv('../data/reference.csv')         #load reference data
 covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])    #read country aggregated csv
@@ -45,7 +34,6 @@ c1_ref_df = (reference_df.loc[reference_df['Country_Region'] == country1])
 c1_df['Population'] = (c1_ref_df['Population'].values[0])   #first line in file has total, no need for sum())
 print_data(country1, c1_df, c1_ref_df)
 
-
 country2 = input("Compare with what country: ")
 while not (covid_df['Country']==country2).any():
     country2 = input("Try, again: compare with what country: ")
@@ -54,7 +42,6 @@ c2_df = (covid_df.loc[covid_df['Country'] == country2])     #pick data for count
 c2_df = (c2_df.loc[covid_df['Confirmed'] > 0 ])             #filter dates with no COVID
 c2_ref_df = (reference_df.loc[reference_df['Country_Region'] == country2])
 c2_df['Population'] = (c2_ref_df['Population'].values[0])
-
 print_data(country2, c2_df, c2_ref_df)
 
 c1_df = calc_data(c1_df, c1_ref_df)
