@@ -57,7 +57,8 @@ c1_df.plot(ax=axes[0,1], title=country1, x='Date', y=['Deaths'])
 c2_df.plot(ax=axes[1,0],title=country2, x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
 c2_df.plot(ax=axes[1,1],title=country2, x='Date', y=['Deaths'])
 
-#elec_df.plot(y=['kWh', 'Export', 'Demand'])
-#plt.scatter(d_per1, d_per2)
 
+fig, axes2 = plt.subplots(nrows=2, ncols=2)
+c1_df.plot(ax=axes2[0,0], title=country1, x='Date', y=['P_cp', 'P_dc', 'P_dp'])
+c2_df.plot(ax=axes2[1,0], title=country2, x='Date', y=['P_cp', 'P_dc', 'P_dp'])
 plt.show()
