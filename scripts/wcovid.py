@@ -1,7 +1,7 @@
 #main program WvdS
 
-#import pandas as pd                                         #needed for dataframe
-#import matplotlib.pyplot as plt                             #needed for plot
+import pandas as pd                                         #needed for dataframe
+import matplotlib.pyplot as plt                             #needed for plot
 import printcovid as pc                                     #WvdS: separating processing and printing functions
 import wworld as wv                                         #WvdS: world view
 
