@@ -1,7 +1,7 @@
 #main program WvdS
 
-import pandas as pd                                         #needed for dataframe
-import matplotlib.pyplot as plt                             #needed for plot
+#import pandas as pd                                         #needed for dataframe
+#import matplotlib.pyplot as plt                             #needed for plot
 import printcovid as pc                                     #WvdS: separating processing and printing functions
 import wworld as wv                                         #WvdS: world view
 
@@ -41,8 +41,6 @@ c2_df = calc_data(c2_df, c2_ref_df)
 pc.print_death(c1_df)
 pc.print_death(c2_df)
 
-print (wv.wview_df)
-
 fig, axes = plt.subplots(nrows=2, ncols=2)
 c1_df.plot(ax=axes[0,0], title=country1, x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
 c1_df.plot(ax=axes[0,1], title=country1, x='Date', y=['Deaths'])
@@ -56,5 +54,9 @@ c2_df.plot(ax=axes2[1,0], title=country2, x='Date', y=['P_cp', 'P_dp'])
 
 c1_df.plot(ax=axes2[0,1], title=country1, x='Date', y=['P_dc'])
 c2_df.plot(ax=axes2[1,1], title=country2, x='Date', y=['P_dc'])
+
+wfig, waxes = plt.subplots(nrows=2, ncols=2)
+wv.wview_df.plot(ax=waxes[0,0], title="World", x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
+wv.wview_df.plot(ax=waxes[0,1], title="World", x='Date', y=['Increase rate'])
 
 plt.show()
