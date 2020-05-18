@@ -9,6 +9,8 @@ def calc_data (country_df, country_ref_df):
     country_df['P_cp'] = round(country_df['Confirmed'] / country_df['Population'] * 100, 4)  #% corona % of polulation
     country_df['P_dc'] = round(country_df['Deaths'] / country_df['Confirmed'] * 100, 4)      #% corona % deaths
     country_df['P_dp'] = round(country_df['Deaths'] / country_df['Population'] * 100, 4)     #% corona % of polulation
+    #increase rate calculation
+    country_df['Increase rate'] = country_df['P_cp'].pct_change( periods = 1)
     #print (country_df)
     return country_df
 
