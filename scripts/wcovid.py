@@ -10,7 +10,7 @@ def calc_data (country_df, country_ref_df):
     country_df['P_dc'] = round(country_df['Deaths'] / country_df['Confirmed'] * 100, 4)      #% corona % deaths
     country_df['P_dp'] = round(country_df['Deaths'] / country_df['Population'] * 100, 4)     #% corona % of polulation
     #increase rate calculation
-    country_df['Increase rate'] = country_df['P_cp'].pct_change( periods = 1)
+    country_df['Increase rate'] = country_df['P_cp'].pct_change(periods = 1)
     #print (country_df)
     return country_df
 
@@ -60,5 +60,7 @@ c2_df.plot(ax=axes2[1,1], title=country2, x='Date', y=['P_dc'])
 wfig, waxes = plt.subplots(nrows=2, ncols=2)
 wv.wview_df.plot(ax=waxes[0,0], title="World", x='Date', y=['Confirmed', 'Recovered', 'Deaths'])
 wv.wview_df.plot(ax=waxes[0,1], title="World", x='Date', y=['Increase rate'])
+c1_df.plot(ax=waxes[1,0], title=country1, x='Date', y=['Increase rate'])
+c2_df.plot(ax=waxes[1,1], title=country2, x='Date', y=['Increase rate'])
 
 plt.show()
