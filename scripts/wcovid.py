@@ -1,5 +1,4 @@
 #main program WvdS
-
 import pandas as pd                                         #needed for dataframe
 import matplotlib.pyplot as plt                             #needed for plot
 import printcovid as pc                                     #WvdS: separating processing and printing functions
