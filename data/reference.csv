@@ -23,6 +23,7 @@ UID,iso2,iso3,code3,FIPS,Admin2,Province_State,Country_Region,Lat,Long_,Combined
 72,BW,BWA,72,,,,Botswana,-22.3285,24.6849,Botswana,2351625
 76,BR,BRA,76,,,,Brazil,-14.235,-51.9253,Brazil,212559409
 <<<<<<< HEAD
+<<<<<<< HEAD
 7601,BR,BRA,76,,,Acre,Brazil,-9.0238,-70.812,"Acre, Brazil",1777225
 7602,BR,BRA,76,,,Alagoas,Brazil,-9.5713,-36.782,"Alagoas, Brazil",881935
 7603,BR,BRA,76,,,Amapa,Brazil,0.902,-52.003,"Amapa, Brazil",4144597
@@ -51,6 +52,8 @@ UID,iso2,iso3,code3,FIPS,Admin2,Province_State,Country_Region,Lat,Long_,Combined
 7626,BR,BRA,76,,,Sergipe,Brazil,-10.5741,-37.3857,"Sergipe, Brazil",7018354
 7627,BR,BRA,76,,,Tocantins,Brazil,-10.1753,-48.2982,"Tocantins, Brazil",3015268
 =======
+=======
+>>>>>>> af1e785106a3dfc9f18cfa3d86d518c94c2adf9b
 7601,BR,BRA,76,,,Acre,Brazil,-9.0238,-70.812,"Acre, Brazil",881935
 7602,BR,BRA,76,,,Alagoas,Brazil,-9.5713,-36.782,"Alagoas, Brazil",3337357
 7603,BR,BRA,76,,,Amapa,Brazil,0.902,-52.003,"Amapa, Brazil",845731
@@ -78,7 +81,10 @@ UID,iso2,iso3,code3,FIPS,Admin2,Province_State,Country_Region,Lat,Long_,Combined
 7625,BR,BRA,76,,,Sao Paulo,Brazil,-23.5505,-46.6333,"Sao Paulo, Brazil",45919049
 7626,BR,BRA,76,,,Sergipe,Brazil,-10.5741,-37.3857,"Sergipe, Brazil",2298696
 7627,BR,BRA,76,,,Tocantins,Brazil,-10.1753,-48.2982,"Tocantins, Brazil",1572866
+<<<<<<< HEAD
 >>>>>>> f57fd7441d55408abf67063892c9b9442ef6c3d8
+=======
+>>>>>>> af1e785106a3dfc9f18cfa3d86d518c94c2adf9b
 7628,BR,BRA,76,,,Unknown,Brazil,,,"Unknown, Brazil",
 96,BN,BRN,96,,,,Brunei,4.5353,114.7277,Brunei,437483
 100,BG,BGR,100,,,,Bulgaria,42.7339,25.4858,Bulgaria,6948445
