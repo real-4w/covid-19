@@ -13,8 +13,8 @@ def calc_data (country_df, country_ref_df):
     #print (country_df)
     return country_df
 
-reference_df = pd.read_csv('../data/reference.csv')                                 #read reference data
-covid_df = pd.read_csv('../data/countries-aggregated.csv',parse_dates=['Date'])     #read country aggregated csv
+reference_df = pd.read_csv('data/reference.csv')                                 #read reference data
+covid_df = pd.read_csv('data/countries-aggregated.csv',parse_dates=['Date'])     #read country aggregated csv
 
 country1 = input("What country are we looking for: ")
 while not (covid_df['Country']==country1).any():
